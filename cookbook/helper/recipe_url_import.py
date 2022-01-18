@@ -3,6 +3,7 @@ import re
 from html import unescape
 
 from django.utils.dateparse import parse_duration
+from django.utils.translation import gettext as _
 from isodate import parse_duration as iso_parse_duration
 from isodate.isoerror import ISO8601Error
 from recipe_scrapers._utils import get_minutes
@@ -140,7 +141,8 @@ def get_from_scraper(scrape, request):
 
     try:
         recipe_json['recipeInstructions'] = parse_instructions(scrape.instructions())
-    except Exception:
+    except Exception as e:
+        print("Exception in parse_instructions(scrape.instructions())", e)
         recipe_json['recipeInstructions'] = ""
 
     if scrape.url:

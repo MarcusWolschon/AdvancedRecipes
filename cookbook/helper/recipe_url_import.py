@@ -7,7 +7,6 @@ from isodate import parse_duration as iso_parse_duration
 from isodate.isoerror import ISO8601Error
 from recipe_scrapers._utils import get_minutes
 
-from cookbook.helper import recipe_url_import as helper
 from cookbook.helper.ingredient_parser import IngredientParser
 from cookbook.models import Keyword
 
@@ -147,8 +146,33 @@ def get_from_scraper(scrape, request):
     if scrape.url:
         recipe_json['url'] = scrape.url
         recipe_json['recipeInstructions'] += "\n\nImported from " + scrape.url
+
+    try:
+        nutrients = scrape.schema.nutrients()
+        recipe_json['nutrition'] = {
+            'source': 'import'
+        }
+        if 'calories' in nutrients:
+            recipe_json['nutrition']['calories'] = remove_non_digts(nutrients['calories'])
+        if 'carbohydrateContent' in nutrients:
+            recipe_json['nutrition']['carbohydrates'] = remove_non_digts(nutrients['carbohydrateContent'])
+        if 'fatContent' in nutrients:
+            recipe_json['nutrition']['fats'] = remove_non_digts(nutrients['fatContent'])
+        if 'proteinContent' in nutrients:
+            recipe_json['nutrition']['proteins'] = remove_non_digts(nutrients['proteinContent'])
+    except Exception as e:
+        print("ERROR importing nutrition", repr(e))
+        recipe_json['recipeInstructions'] += "\n\nnutrition=" + repr(scrape.schema.nutrients())
+
     return recipe_json
 
+# remove everything that is not part of the first, english, decimal number
+def remove_non_digts(input):
+    match = re.search('\d+\.?\d*', input)
+    if match:
+        return match.group()
+    else:
+        return ""
 
 def parse_name(name):
     if type(name) == list:

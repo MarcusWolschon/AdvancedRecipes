@@ -14,6 +14,8 @@ Without Feedback improvement can't happen, so don't hesitate to say what you wan
 Code contributions are always welcome. There is no special rules for what you need to do, 
 just do your best and we will work together to get your idea and code merged into the project.
 
+You may want to run "python manage.py collectstatic" and then "pytest" to make sure all unit tests are still working. 
+
 !!! info
     The dev setup is a little messy as this application combines the best (at least in my opinion) of django and Vue.js.
 
@@ -22,11 +24,14 @@ This application is developed using the Django framework for Python. They have e
 [documentation](https://www.djangoproject.com/start/) on how to get started, so I will only give you the basics here.
 
 1. Clone this repository wherever you like and install the Python language for your OS (at least version 3.8)
-2. Open it in your favorite editor/IDE (e.g. PyCharm)
+2. Open it in your favorite editor/IDE (e.g. PyCharm) or plain command prompt
     1. If you want, create a virtual environment for all your packages.
 3. Install all required packages: `pip install -r requirements.txt`
+    1. On Windows you may be asked you to install the [Buildtools für Visual Studio 2022](https://visualstudio.microsoft.com/de/downloads/) to build some of the requied modules. In "Visual Studio Installer" you have to select "Desktopdevelopment with C++" for this.
+	2. If it complains about missing 'lber.h', you may want to replace "django-auth-ldap" and "python-ldap" in requirements.txt with "django-python3-ldap" instead of building the required OpenLDAP.
 4. Run the migrations: `python manage.py migrate`
 5. Start the development server: `python manage.py runserver`
+6. Keep this console open and go on with the next chapter "Vue.js"
 
 There is **no** need to set any environment variables. By default, a simple sqlite database is used and all settings are
 populated from default values.
@@ -34,10 +39,14 @@ populated from default values.
 ### Vue.js
 Some of the more complex pages use [Vue.js](https://vuejs.org/) to enhance the frontend. 
 
-In order to work on these pages you will have to install a Javascript package manager of your choice. The following examples use yarn.
+In order to work on these pages you will have to install a Javascript package manager of your choice. The following examples use yarn. To [install yarn](https://classic.yarnpkg.com/lang/en/docs/install), you need [Node.js](https://nodejs.org/en/download/current/) first.
 
-Run `yarn install` to install the dependencies. After that you can use `yarn serve` to start the development server
-and go ahead and test your changes. Before committing please make sure to pack the source using `yarn build`.
+1. Open a shell in the "vue" subdirectory
+2. Run `yarn install` to install the dependencies.
+    1. if you get an error "ERR_OSSL_EVP_UNSUPPORTED", run "export NODE_OPTIONS=--openssl-legacy-provider"(Unix) or "set NODE_OPTIONS=--openssl-legacy-provider"(Windows)
+3. After that you can use `yarn serve` to start the development server and go ahead and test your changes. 
+
+Before committing please make sure to pack the source using `yarn build`.
 
 #### API Client
 The API Client is generated automatically from the openapi interface provided by the django rest framework.

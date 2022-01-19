@@ -6,17 +6,19 @@
   <br>
 </h1>
 
-<h4 align="center">The recipe manager that allows you to manage your ever growing collection of digital recipes.</h4>
+<h4 align="center">About.</h4>
 
-<p align="center">
-<a href="https://github.com/vabene1111/recipes/actions" target="_blank" rel="noopener noreferrer"><img src="https://github.com/vabene1111/recipes/workflows/Continous%20Integration/badge.svg?branch=master" ></a>
-<a href="https://github.com/vabene1111/recipes/stargazers" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/github/stars/vabene1111/recipes" ></a>
-<a href="https://github.com/vabene1111/recipes/network/members" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/github/forks/vabene1111/recipes" ></a>
-<a href="https://discord.gg/RhzBrfWgtp" target="_blank" rel="noopener noreferrer"><img src="https://badgen.net/badge/icon/discord?icon=discord&label" ></a>
-<a href="https://hub.docker.com/r/vabene1111/recipes" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/docker/pulls/vabene1111/recipes" ></a>
-<a href="https://github.com/vabene1111/recipes/releases/latest" rel="noopener noreferrer"><img src="https://img.shields.io/github/v/release/vabene1111/recipes" ></a>
-<a href="https://app.tandoor.dev/accounts/login/?demo" rel="noopener noreferrer"><img src="https://img.shields.io/badge/demo-available-success" ></a>
-</p>
+This is my **personal fork** of [Tandoor Recipes](https://github.com/TandoorRecipes/recipes).
+It includes serveral features I've written that where not or not yet accepted as pull requests upstream.
+- [#1279 improve developer instructions](https://github.com/TandoorRecipes/recipes/pull/1279)
+- [#476 Import recipes with multiple instruction steps](https://github.com/TandoorRecipes/recipes/pull/1303)
+- [#1270 import nutritional information](https://github.com/TandoorRecipes/recipes/pull/1294)
+
+You can also find my [![app icon](https://raw.githubusercontent.com/MarcusWolschon/ShoppingForTandoor/main/app/ShoppingForTandoorDesktop/src/jvmMain/resources/favicon.ico) Android app for a shopping list](https://github.com/MarcusWolschon/ShoppingForTandoor).
+
+<hr/>
+
+<h4 align="center">The recipe manager that allows you to manage your ever growing collection of digital recipes.</h4>
 
 <p align="center">
 <a href="https://tandoor.dev" target="_blank" rel="noopener noreferrer">Website</a> •

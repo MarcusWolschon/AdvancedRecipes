@@ -36,6 +36,9 @@ This application is developed using the Django framework for Python. They have e
 There is **no** need to set any environment variables. By default, a simple sqlite database is used and all settings are
 populated from default values.
 
+To run all python unit tests, execute `pytest`.
+To run only a single text, you may use the -k argumgnet. e.g. `pytest -k test_recipe_import`
+
 ### Vue.js
 Some of the more complex pages use [Vue.js](https://vuejs.org/) to enhance the frontend. 
 
@@ -47,6 +50,15 @@ In order to work on these pages you will have to install a Javascript package ma
 3. After that you can use `yarn serve` to start the development server and go ahead and test your changes. 
 
 Before committing please make sure to pack the source using `yarn build`.
+
+### Translations
+
+To compile modified -po translation files into machine readable .mo files,
+you need to have gettext installed.
+For Windows, use the version on https://mlocati.github.io/articles/gettext-iconv-windows.html .
+
+Then open a shell in the directory "cookbook" and run:
+`django-admin makemessages -a`
 
 #### API Client
 The API Client is generated automatically from the openapi interface provided by the django rest framework.

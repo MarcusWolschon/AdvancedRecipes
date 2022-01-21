@@ -10,7 +10,7 @@
 
 This is my **personal fork** of [Tandoor Recipes](https://github.com/TandoorRecipes/recipes).
 It includes serveral features I've written that where not or not yet accepted as pull requests upstream.
-- [#1279 improve developer instructions](https://github.com/TandoorRecipes/recipes/pull/1279)
+- [#1279 improve developer instructions](https://github.com/TandoorRecipes/recipes/pull/1279) and [new PR](https://github.com/TandoorRecipes/recipes/pull/1389)
 - [#476 Import recipes with multiple instruction steps](https://github.com/TandoorRecipes/recipes/pull/1303)
 - [#1270 import nutritional information](https://github.com/TandoorRecipes/recipes/pull/1294)
 

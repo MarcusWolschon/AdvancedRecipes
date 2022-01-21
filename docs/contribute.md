@@ -57,7 +57,7 @@ To compile modified -po translation files into machine readable .mo files,
 you need to have gettext installed.
 For Windows, use the version on https://mlocati.github.io/articles/gettext-iconv-windows.html .
 
-Then open a shell in the directory "cookbook" and run:
+Then run .\makemessages.cmd or open a shell in the directory "cookbook" and run:
 `django-admin makemessages -a`
 
 #### API Client

@@ -2,7 +2,6 @@ import json
 import uuid
 from datetime import datetime
 from io import BytesIO
-import re
 
 import requests
 from django.contrib import messages
@@ -24,9 +23,14 @@ from cookbook.helper.ingredient_parser import IngredientParser
 from cookbook.helper.permission_helper import group_required, has_group_permission
 from cookbook.helper.recipe_url_import import parse_cooktime
 from cookbook.models import (Comment, Food, Ingredient, Keyword, Recipe, RecipeImport, Step, Sync,
-                             Unit, UserPreference, NutritionInformation)
+                             Unit, UserPreference)
 from cookbook.tables import SyncTable
 from recipes import settings
+
+# vvvvvvvvvvvvvvvvvvvvvv
+import re
+from cookbook.models import (NutritionInformation)
+# ^^^^^^^^^^^^^^^^^^^^^^
 
 
 @group_required('user')
@@ -139,6 +143,7 @@ def import_url(request):
         data['cookTime'] = parse_cooktime(data.get('cookTime', ''))
         data['prepTime'] = parse_cooktime(data.get('prepTime', ''))
 
+        # vvvvvvvvvvvvvvvvvvvvvv
         calories = 0
         carbohydrates = 0
         fats = 0
@@ -161,18 +166,30 @@ def import_url(request):
             source=data['nutrition']['source'],
             space=request.space,
         )
+        # ^^^^^^^^^^^^^^^^^^^^^^
+
         recipe = Recipe.objects.create(
             name=data['name'],
             description=data['description'],
             waiting_time=data['cookTime'],
             working_time=data['prepTime'],
             servings=data['servings'],
-            nutrition=nutrition,
             internal=True,
             created_by=request.user,
             space=request.space,
+            nutrition=nutrition,   # <<<<<<<<<<<<<<<<<<<<
+        )
+        """
+
+        step = Step.objects.create(
+            instruction=data['recipeInstructions'], space=request.space,
         )
 
+        recipe.steps.add(step)
+
+
+        """
+        # vvvvvvvvvvvvvvvvvvvvvv
         steps = []
         if data['import_as_steps']:
             if settings.DEBUG:
@@ -212,17 +229,20 @@ def import_url(request):
             steps.append(new_step)
             new_step.save()
             recipe.steps.add(new_step)
+        # ^^^^^^^^^^^^^^^^^^^^^^
 
         for kw in data['keywords']:
+            # vvvvvvvvvvvvvvvvvvvvvv
             if not kw['text'].strip():
                 # ignore blank keywords
                 continue
+            # ^^^^^^^^^^^^^^^^^^^^^^
             if data['all_keywords']: # do not remove this check :) https://github.com/vabene1111/recipes/issues/645
-                k, created = Keyword.objects.get_or_create(name=kw['text'].strip(), space=request.space)
+                k, created = Keyword.objects.get_or_create(name=kw['text'], space=request.space)
                 recipe.keywords.add(k)
             else:
                 try:
-                    k = Keyword.objects.get(name=kw['text'].strip(), space=request.space)
+                    k = Keyword.objects.get(name=kw['text'], space=request.space)
                     recipe.keywords.add(k)
                 except ObjectDoesNotExist:
                     pass
@@ -251,7 +271,11 @@ def import_url(request):
             ingredient.note = ing['note'].strip() if 'note' in ing else ''
 
             ingredient.save()
+
+            # vvvvvvvvvvvvvvvvvvvvvv
             step = find_step_for_ingredient(steps, ingredient)
+            # ^^^^^^^^^^^^^^^^^^^^^^
+
             step.ingredients.add(ingredient)
 
         if 'image' in data and data['image'] != '' and data['image'] is not None:
@@ -282,11 +306,13 @@ def import_url(request):
 
     return render(request, 'url_import.html', context)
 
+# vvvvvvvvvvvvvvvvvvvvvv
 def find_step_for_ingredient(steps, ingredient):
     for step in steps:
         if ingredient.food.name in step.instruction:
             return step
     return steps[0]
+# ^^^^^^^^^^^^^^^^^^^^^^
 
 class Object(object):
     pass

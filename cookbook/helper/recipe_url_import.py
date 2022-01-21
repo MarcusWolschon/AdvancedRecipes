@@ -149,6 +149,7 @@ def get_from_scraper(scrape, request):
         recipe_json['url'] = scrape.url
         recipe_json['recipeInstructions'] += "\n\nImported from " + scrape.url
 
+    # vvvvvvvvvvvvvvvvvvvvvv
     try:
         nutrients = scrape.schema.nutrients()
         recipe_json['nutrition'] = {
@@ -165,9 +166,11 @@ def get_from_scraper(scrape, request):
     except Exception as e:
         print("ERROR importing nutrition", repr(e))
         recipe_json['recipeInstructions'] += "\n\nnutrition=" + repr(scrape.schema.nutrients())
+    # ^^^^^^^^^^^^^^^^^^^^^^
 
     return recipe_json
 
+# vvvvvvvvvvvvvvvvvvvvvv
 # remove everything that is not part of the first, english, decimal number
 def remove_non_digts(input):
     match = re.search('\d+\.?\d*', input)
@@ -175,6 +178,7 @@ def remove_non_digts(input):
         return match.group()
     else:
         return ""
+# ^^^^^^^^^^^^^^^^^^^^^^
 
 def parse_name(name):
     if type(name) == list:

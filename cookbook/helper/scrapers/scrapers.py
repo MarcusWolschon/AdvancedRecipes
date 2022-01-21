@@ -3,18 +3,25 @@ from json import JSONDecodeError
 from recipe_scrapers import SCRAPERS, get_host_name
 from recipe_scrapers._factory import SchemaScraperFactory
 from recipe_scrapers._schemaorg import SchemaOrg
-from recipes import settings
 
 from .cooksillustrated import CooksIllustrated
+
+# vvvvvvvvvvvvvvvvvvvvvv
+from recipes import settings
 from .cookidoo import Cookidoo
+# ^^^^^^^^^^^^^^^^^^^^^^
 
 CUSTOM_SCRAPERS = {
     CooksIllustrated.host(site="cooksillustrated"): CooksIllustrated,
     CooksIllustrated.host(site="americastestkitchen"): CooksIllustrated,
     CooksIllustrated.host(site="cookscountry"): CooksIllustrated,
+
+    # vvvvvvvvvvvvvvvvvvvvvv
     "cookidoo.de": Cookidoo,
     "cookidoo.at": Cookidoo,
     "cookidoo.ch": Cookidoo,
+    # ^^^^^^^^^^^^^^^^^^^^^^
+
 }
 SCRAPERS.update(CUSTOM_SCRAPERS)
 

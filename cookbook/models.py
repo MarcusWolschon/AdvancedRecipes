@@ -337,8 +337,9 @@ class UserPreference(models.Model, PermissionModelMixin):
     mealplan_autoadd_shopping = models.BooleanField(default=False)
     mealplan_autoexclude_onhand = models.BooleanField(default=True)
     mealplan_autoinclude_related = models.BooleanField(default=True)
-    shopping_add_onhand = models.BooleanField(default=True)
+    shopping_add_onhand = models.BooleanField(default=False)
     filter_to_supermarket = models.BooleanField(default=False)
+    left_handed = models.BooleanField(default=False)
     default_delay = models.DecimalField(default=4, max_digits=8, decimal_places=4)
     shopping_recent_days = models.PositiveIntegerField(default=7)
     csv_delim = models.CharField(max_length=2, default=",")
@@ -515,7 +516,7 @@ class Food(ExportModelOperationsMixin('food'), TreeModel, PermissionModelMixin):
 
     @staticmethod
     def reset_inheritance(space=None):
-        # resets inheritted fields to the space defaults and updates all inheritted fields to root object values
+        # resets inherited fields to the space defaults and updates all inherited fields to root object values
         inherit = space.food_inherit.all()
 
         # remove all inherited fields from food
@@ -576,17 +577,7 @@ class Ingredient(ExportModelOperationsMixin('ingredient'), models.Model, Permiss
 
 
 class Step(ExportModelOperationsMixin('step'), models.Model, PermissionModelMixin):
-    TEXT = 'TEXT'
-    TIME = 'TIME'
-    FILE = 'FILE'
-    RECIPE = 'RECIPE'
-
     name = models.CharField(max_length=128, default='', blank=True)
-    type = models.CharField(
-        choices=((TEXT, _('Text')), (TIME, _('Time')), (FILE, _('File')), (RECIPE, _('Recipe')),),
-        default=TEXT,
-        max_length=16
-    )
     instruction = models.TextField(blank=True)
     ingredients = models.ManyToManyField(Ingredient, blank=True)
     time = models.IntegerField(default=0, blank=True)
@@ -618,15 +609,22 @@ class NutritionInformation(models.Model, PermissionModelMixin):
     )
     proteins = models.DecimalField(default=0, decimal_places=16, max_digits=32)
     calories = models.DecimalField(default=0, decimal_places=16, max_digits=32)
-    source = models.CharField(
-        max_length=512, default="", null=True, blank=True
-    )
+    source = models.CharField( max_length=512, default="", null=True, blank=True)
 
     space = models.ForeignKey(Space, on_delete=models.CASCADE)
     objects = ScopedManager(space='space')
 
     def __str__(self):
         return f'Nutrition {self.pk}'
+
+
+# class NutritionType(models.Model, PermissionModelMixin):
+#     name = models.CharField(max_length=128)
+#     icon = models.CharField(max_length=16, blank=True, null=True)
+#     description = models.CharField(max_length=512, blank=True, null=True)
+#
+#     space = models.ForeignKey(Space, on_delete=models.CASCADE)
+#     objects = ScopedManager(space='space')
 
 
 class Recipe(ExportModelOperationsMixin('recipe'), models.Model, PermissionModelMixin):

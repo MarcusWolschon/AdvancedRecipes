@@ -2562,7 +2562,7 @@ msgstr ""
 
 #: .\templates\url_import.html:373 .\templates\url_import.html:644
 msgid "The markdown # for a header marks a new step."
-msgstr ""
+msgstr "Das Markdown # markiert einen neuen Schritt."
 
 #: .\templates\url_import.html:396
 msgid "Discovered Attributes"
@@ -2621,7 +2621,15 @@ msgstr "Schlagwort hinzufügen"
 msgid "All Keywords"
 msgstr "Alle Schlagwörter"
 
-#: .\templates\url_import.html:678
+#: .\templates\url_import.html:581
+msgid "Import Steps"
+msgstr "Schritte Importieren"
+
+#: .\templates\url_import.html:585
+msgid "Import markup headings as separate steps."
+msgstr "Markup Überschriften als Schritte importieren"
+
+#: .\templates\url_import.html:609
 msgid "Import all keywords, not only the ones already existing."
 msgstr "Alle Schlagwörter importieren, nicht nur die bereits bestehenden."
 

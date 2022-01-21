@@ -2,15 +2,16 @@
   <br>
   <a href="https://tandoor.dev"><img src="https://github.com/vabene1111/recipes/raw/develop/docs/logo_color.svg" height="256px" width="256px"></a>
   <br>
-  Tandoor Recipes
+  Tandoor Recipes - Advanced
   <br>
 </h1>
 
-<h4 align="center">About.</h4>
+<h4 align="center">Improvements over the vanilla Tandoor Recipes:</h4>
 
 This is my **personal fork** of [Tandoor Recipes](https://github.com/TandoorRecipes/recipes).
 It includes serveral features I've written that where not or not yet accepted as pull requests upstream.
-- [#1279 improve developer instructions](https://github.com/TandoorRecipes/recipes/pull/1279) and [new PR](https://github.com/TandoorRecipes/recipes/pull/1389)
+- [#1279 improve developer instructions](https://github.com/TandoorRecipes/recipes/pull/1279)
+- [Cookidoo importer with special handling for Thermomix instructions](https://github.com/TandoorRecipes/recipes/pull/1389)
 - [#476 Import recipes with multiple instruction steps](https://github.com/TandoorRecipes/recipes/pull/1303)
 - [#1270 import nutritional information](https://github.com/TandoorRecipes/recipes/pull/1294)
 
@@ -20,20 +21,11 @@ You can also find my [![app icon](https://raw.githubusercontent.com/MarcusWolsch
 
 <h4 align="center">The recipe manager that allows you to manage your ever growing collection of digital recipes.</h4>
 
-<p align="center">
-<a href="https://tandoor.dev" target="_blank" rel="noopener noreferrer">Website</a> •
-<a href="https://docs.tandoor.dev/install/docker/" target="_blank" rel="noopener noreferrer">Installation</a> •
-<a href="https://docs.tandoor.dev/" target="_blank" rel="noopener noreferrer">Docs</a> •
-<a href="https://app.tandoor.dev/accounts/login/?demo" target="_blank" rel="noopener noreferrer">Demo</a> •
-<a href="https://discord.gg/RhzBrfWgtp" target="_blank" rel="noopener noreferrer">Discord</a>
-</p>
-
-![Preview](docs/preview.png)
 
 ## Core Features
 - 🥗 **Manage your recipes** - Manage your ever growing recipe collection
 - 📆 **Plan** - multiple meals for each day
-- 🛒 **Shopping lists** - via the meal plan or straight from recipes
+- 🛒 **Shopping lists V2** - via the meal plan or straight from recipes
 - 📚 **Cookbooks** - collect recipes into books
 - 👪 **Share and collaborate** on recipes with friends and family
 
@@ -50,40 +42,18 @@ You can also find my [![app icon](https://raw.githubusercontent.com/MarcusWolsch
   
 ## All the must haves
 
-- 📱Optimized for use on **mobile** devices
+- 📱Optimized for use on **mobile** devices and also a **companion native Android app**
 - 🌍 localized in many languages thanks to the awesome community
-- 📥️ **Import your collection** from many other [recipe managers](https://docs.tandoor.dev/features/import_export/)
+- 📥️ **Import your collection** from many other [recipe managers](https://docs.tandoor.dev/features/import_export/) including **special Cookidoo importer** for your personal, non-public receipt list
 - ➕ Many more like recipe scaling, image compression, printing views and supermarkets
 
 This application is meant for people with a collection of recipes they want to share with family and friends or simply
 store them in a nicely organized way. A basic permission system exists but this application is not meant to be run as 
 a public page.
 
-## Docs
-
-Documentation can be found [here](https://docs.tandoor.dev/).
-
 ## Contributing
 
 You can help out with the ongoing development by looking for potential bugs in our code base, or by contributing new features. We are always welcoming new pull requests containing bug fixes, refactors and new features. We have a list of tasks and bugs on our issue tracker on Github. Please comment on issues if you want to contribute with, to avoid duplicating effort.
-
-## Your Feedback
-
-Share some information on how you use Tandoor to help me improve the application [Google Survey](https://forms.gle/qNfLK2tWTeWHe9Qd7)
-
-## Get in touch
-
-<table>
-  <tr>
-    <td><a href="https://discord.gg/RhzBrfWgtp">Discord</a></td>
-    <td>We have a public Discord server that anyone can join. This is where all our developers and contributors hang out and where we make announcements</td>
-  </tr>
-
-  <tr>
-    <td><a href="https://twitter.com/TandoorRecipes">Twitter</a></td>
-    <td>You can follow our Twitter account to get updates on new features or releases</td>
-  </tr>
-</table>
 
 ## License
 

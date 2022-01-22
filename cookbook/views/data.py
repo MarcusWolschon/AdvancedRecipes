@@ -204,7 +204,7 @@ def import_url(request):
                     continue
                 if instruction.startswith('#'):
                     found = next_step_name = instruction[1:]
-                    if next_step_name != "":
+                    if len(next_step_name) == 0:
                         if settings.DEBUG:
                             print("data.py two step names, importing as section " + found)
                         new_step = Step.objects.create(name=next_step_name.strip(), instruction=instruction.strip(), space=request.space)

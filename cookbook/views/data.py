@@ -148,14 +148,15 @@ def import_url(request):
         carbohydrates = 0
         fats = 0
         proteins = 0
+
         if data['nutrition']:
-            if data['nutrition']['calories']:
+            if 'calories' in data['nutrition']:
                 calories = data['nutrition']['calories']
-            if data['nutrition']['carbohydrates']:
+            if 'carbohydrates' in data['nutrition']:
                 carbohydrates = data['nutrition']['carbohydrates']
-            if data['nutrition']['fats']:
+            if 'fats' in data['nutrition']:
                 fats = data['nutrition']['fats']
-            if data['nutrition']['proteins']:
+            if 'proteins' in data['nutrition']:
                 proteins = data['nutrition']['proteins']
 
         nutrition = NutritionInformation.objects.create(

@@ -36,7 +36,6 @@ def text_scraper(text, url=None):
         scraper_class = SCRAPERS[domain]
     else:
         scraper_class = SchemaScraperFactory.SchemaScraper
-    print("text_scraper: scraper_class=" + scraper_class.__name__)
 
     class TextScraper(scraper_class):
         def __init__(
@@ -71,15 +70,16 @@ def text_scraper(text, url=None):
         def instructions(self):
             instructions = self.schema.data.get("recipeInstructions") or ""
 
-            print("TextScraper: parsing instructions of type " + instructions.__class__.__name__)
+            if settings.DEBUG:
+                print("TextScraper: parsing instructions of type " + instructions.__class__.__name__)
 
             # handle block of text in format "1.step1...\n2.step2....\n..."
             if isinstance(instructions, str):
-                print("TextScraper: breaking up string instructions into  steps")
-                print("TextScraper: before=" + instructions)
+                if settings.DEBUG:
+                    print("TextScraper: before=" + instructions)
                 instructions = re.split('\\\n\\d+\\.', instructions)
-                print("TextScraper: string instructions broken up into  steps")
-                print("TextScraper: string instructions broken up into " + str(len(instructions)) + " steps")
+                if settings.DEBUG:
+                    print("TextScraper: string instructions broken up into " + str(len(instructions)) + " steps")
 
             # handle instructions already presented as steps
             if isinstance(instructions, list):

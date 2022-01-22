@@ -65,7 +65,10 @@ def text_scraper(text, url=None):
             return re.sub("(" + full + ")", "**\\1**", instruction) \
                 .replace("", _('Linkslauf')) \
                 .replace("", _('Kochlöffel')) \
-                .replace("", _('Kneten'))
+                .replace("", _('Kneten')) \
+                .replace("Rühraufsatz einsetzen", "**Rühraufsatz einsetzen**") \
+                .replace("Rühraufsatz entfernen", "**Rühraufsatz entfernen**")
+
 
         def instructions(self):
             instructions = self.schema.data.get("recipeInstructions") or ""

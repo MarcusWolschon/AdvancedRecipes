@@ -11,6 +11,10 @@ from recipe_scrapers._utils import get_minutes
 from cookbook.helper.ingredient_parser import IngredientParser
 from cookbook.models import Keyword
 
+# vvvvvvvvvvvvvvvvvvvvvv
+import traceback
+# ^^^^^^^^^^^^^^^^^^^^^^
+
 
 def get_from_scraper(scrape, request):
     # converting the scrape_me object to the existing json format based on ld+json
@@ -143,6 +147,9 @@ def get_from_scraper(scrape, request):
         recipe_json['recipeInstructions'] = parse_instructions(scrape.instructions())
     except Exception as e:
         print("Exception in parse_instructions(scrape.instructions())", e)
+        # vvvvvvvvvvvvvvvvvvvvvv
+        print(traceback.format_exc())
+        # ^^^^^^^^^^^^^^^^^^^^^^
         recipe_json['recipeInstructions'] = ""
 
     if scrape.url:

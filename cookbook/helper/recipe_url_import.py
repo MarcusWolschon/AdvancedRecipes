@@ -11,6 +11,10 @@ from recipe_scrapers._utils import get_minutes
 from cookbook.helper.ingredient_parser import IngredientParser
 from cookbook.models import Keyword
 
+# vvvvvvvvvvvvvvvvvvvvvv
+import traceback
+# ^^^^^^^^^^^^^^^^^^^^^^
+
 
 def get_from_scraper(scrape, request):
     # converting the scrape_me object to the existing json format based on ld+json
@@ -143,12 +147,16 @@ def get_from_scraper(scrape, request):
         recipe_json['recipeInstructions'] = parse_instructions(scrape.instructions())
     except Exception as e:
         print("Exception in parse_instructions(scrape.instructions())", e)
+        # vvvvvvvvvvvvvvvvvvvvvv
+        print(traceback.format_exc())
+        # ^^^^^^^^^^^^^^^^^^^^^^
         recipe_json['recipeInstructions'] = ""
 
     if scrape.url:
         recipe_json['url'] = scrape.url
         recipe_json['recipeInstructions'] += "\n\nImported from " + scrape.url
 
+    # vvvvvvvvvvvvvvvvvvvvvv
     try:
         nutrients = scrape.schema.nutrients()
         recipe_json['nutrition'] = {
@@ -165,9 +173,11 @@ def get_from_scraper(scrape, request):
     except Exception as e:
         print("ERROR importing nutrition", repr(e))
         recipe_json['recipeInstructions'] += "\n\nnutrition=" + repr(scrape.schema.nutrients())
+    # ^^^^^^^^^^^^^^^^^^^^^^
 
     return recipe_json
 
+# vvvvvvvvvvvvvvvvvvvvvv
 # remove everything that is not part of the first, english, decimal number
 def remove_non_digts(input):
     match = re.search('\d+\.?\d*', input)
@@ -175,6 +185,7 @@ def remove_non_digts(input):
         return match.group()
     else:
         return ""
+# ^^^^^^^^^^^^^^^^^^^^^^
 
 def parse_name(name):
     if type(name) == list:

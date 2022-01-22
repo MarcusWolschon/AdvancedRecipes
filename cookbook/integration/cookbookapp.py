@@ -14,6 +14,9 @@ from cookbook.integration.integration import Integration
 from cookbook.models import Recipe, Step, Ingredient, Keyword
 from gettext import gettext as _
 
+# vvvvvvvvvvvvvvvvvvvvvv
+from recipes import settings
+# ^^^^^^^^^^^^^^^^^^^^^^
 
 class CookBookApp(Integration):
 
@@ -43,18 +46,21 @@ class CookBookApp(Integration):
 
         step = Step.objects.create(instruction=recipe_json['recipeInstructions'], space=self.request.space, )
 
-        if 'nutrition' in recipe_json:
+        # vvvvvvvvvvvvvvvvvvvvvv
+        if 'nutrients' in recipe_json:
+            if settings.DEBUG:
+                print("found nutrient")
             calories = 0
             carbohydrates = 0
             fats = 0
             proteins = 0
-            if recipe_json['nutrition']['calories']:
+            if 'calories' in recipe_json['nutrition']:
                 calories = remove_non_digts(recipe_json['nutrition']['calories'])
-            if recipe_json['nutrition']['carbohydrateContent']:
+            if 'carbohydrateContent' in recipe_json['nutrition']:
                 carbohydrates = remove_non_digts(recipe_json['nutrition']['carbohydrateContent'])
-            if recipe_json['nutrition']['fatContent']:
+            if 'fatContent' in recipe_json['nutrition']:
                 fats = remove_non_digts(recipe_json['nutrition']['fatContent'])
-            if recipe_json['nutrition']['proteinContent']:
+            if 'proteinContent' in recipe_json['nutrition']:
                 proteins = remove_non_digts(recipe_json['nutrition']['proteinContent'])
 
             recipe.nutrition = NutritionInformation.objects.create(
@@ -65,7 +71,7 @@ class CookBookApp(Integration):
                 source='cookbookapp',
                 space=self.request.space,
             )
-
+        # ^^^^^^^^^^^^^^^^^^^^^^
 
         step.save()
         recipe.steps.add(step)

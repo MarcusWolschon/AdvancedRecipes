@@ -13,7 +13,10 @@ class Cookidoo(AbstractScraper):
             .replace("<nobr>", "**")\
             .replace("</nobr>", "**")\
             .replace("", _('Linkslauf'))\
-            .replace("", _('Kochlöffel'))
+            .replace("", _('Kochlöffel')) \
+            .replace("", _('Kneten')) \
+            .replace("Rühraufsatz einsetzen", "**Rühraufsatz einsetzen**") \
+            .replace("Rühraufsatz entfernen", "**Rühraufsatz entfernen**")
 
     def instructions(self):
         instructions = self.schema.data.get("recipeInstructions") or ""
@@ -28,12 +31,9 @@ class Cookidoo(AbstractScraper):
                 instructions_gist += self.extract_instructions_text(schema_instruction_item, "#", step_number)
                 step_number = step_number + 1
 
-            # add "header 1" markdown to marks the beginning of a new step
+            # add "header 1" or "header 2" markdown to marks the beginning of a new step
             return "".join(self.normalize_instruction(instruction)
                            for instruction in instructions_gist)
-            #return "\n\n#STEP\n\n".join(
-            #    self.normalize_instruction(instruction) for instruction in instructions_gist
-            #)
 
         return instructions
 

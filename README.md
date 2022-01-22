@@ -11,10 +11,10 @@
 This is my **personal fork** of [Tandoor Recipes](https://github.com/TandoorRecipes/recipes).
 It includes serveral features I've written that where not or not yet accepted as pull requests upstream.
 - [Improved developer instructions](https://github.com/TandoorRecipes/recipes/pull/1279)
-- [Cookidoo importer with Thermomix handling](https://github.com/TandoorRecipes/recipes/pull/1389)
-- [Import recipe steps](https://github.com/TandoorRecipes/recipes/pull/1303)
+- [Cookidoo importer with Thermomix handling](https://github.com/TandoorRecipes/recipes/pull/1389) (including highlight of Thermomix instructions from other recipe sources)
+- [Import recipe steps](https://github.com/TandoorRecipes/recipes/pull/1303) (from sites with machine readable and also unformated steps)
 - [Import recipe nutritional information](https://github.com/TandoorRecipes/recipes/pull/1294)
-- Work In Progress: [Integrating with FatSecret calorie counter](https://github.com/MarcusWolschon/AdvancedRecipes/issues/2)
+- Planned: [Integrating with FatSecret calorie counter](https://github.com/MarcusWolschon/AdvancedRecipes/issues/2)
 
 You can also find my [![app icon](https://raw.githubusercontent.com/MarcusWolschon/ShoppingForTandoor/main/app/ShoppingForTandoorDesktop/src/jvmMain/resources/favicon.ico) Android app for a shopping list](https://github.com/MarcusWolschon/ShoppingForTandoor).
 

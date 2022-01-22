@@ -83,6 +83,8 @@ def text_scraper(text, url=None):
                 instructions = re.split('\\\n\\d+\\.', instructions)
                 if settings.DEBUG:
                     print("TextScraper: string instructions broken up into " + str(len(instructions)) + " steps")
+                if instructions[0].startswith("1."):
+                    instructions[0] = instructions[0][2:]
 
             # handle instructions already presented as steps
             if isinstance(instructions, list):

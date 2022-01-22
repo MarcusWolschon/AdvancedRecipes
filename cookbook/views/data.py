@@ -208,7 +208,7 @@ def import_url(request):
                     if len(next_step_name) == 0:
                         if settings.DEBUG:
                             print("data.py two step names, importing as section " + found)
-                        new_step = Step.objects.create(name=next_step_name.strip(), instruction=instruction.strip(), space=request.space)
+                        new_step = Step.objects.create(name=next_step_name.strip(), instruction=instruction.strip(), space=request.space, show_as_header=True)
                         steps.append(new_step)
                         new_step.save()
                         recipe.steps.add(new_step)
@@ -218,7 +218,7 @@ def import_url(request):
                 else:
                     if settings.DEBUG:
                         print("data.py found instructions, importing step name " + next_step_name)
-                    new_step = Step.objects.create(name=next_step_name.strip(), instruction=instruction.strip(), space=request.space)
+                    new_step = Step.objects.create(name=next_step_name.strip(), instruction=instruction.strip(), space=request.space, show_as_header=False)
                     next_step_name = ""
                     steps.append(new_step)
                     new_step.save()

@@ -39,6 +39,9 @@ Using binaries from the virtual env:
 
 `/var/www/recipes/bin/pip3.9 install -r requirements.txt`
 
+- you may find that you need to install some "-dev" packages or python features the first time.
+- if you have issues with "python-ldap" and missing header files or needing a C compiler first, you may want to replace "python-ldap==3.4.0" and "django-auth-ldap==4.0.0" with "django-python3-ldap" in requirements.txt
+
 You will also need to install front end requirements and build them. For this navigate to the `./vue`folder and run
 
 ```shell

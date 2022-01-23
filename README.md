@@ -19,7 +19,7 @@ It includes serveral features I've written that where not or not yet accepted as
 
 You can also find my [![app icon](https://raw.githubusercontent.com/MarcusWolschon/ShoppingForTandoor/main/app/ShoppingForTandoorDesktop/src/jvmMain/resources/favicon.ico) Android app for a shopping list](https://github.com/MarcusWolschon/ShoppingForTandoor).
 
-Timeline: A stable release of both is planned after the (February?) Release of the upstream Tandoor Recipes with the "Shopping List V2" feature.
+**Timeline:** A stable release of both is planned after the (February 2022?) Release of the upstream Tandoor Recipes with the "Shopping List V2" feature.
 
 <hr/>
 

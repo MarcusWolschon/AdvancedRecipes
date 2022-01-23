@@ -69,9 +69,11 @@ For this [openapi-generator](https://github.com/OpenAPITools/openapi-generator) 
 
 Install it using your desired setup method (for example using `npm install @openapitools/openapi-generator-cli -g`).
 
+Install java for the openapi generator (e.g. `apk add openjdk11`)
+
 Navigate to `vue/src/utils/openapi`.
 
-Generate the schema using `openapi-generator-cli generate -g typescript-axios -i http://127.0.0.1:8000/openapi/` (replace your dev server url if required)
+Generate the schema using `openapi-generator-cli generate -g typescript-axios -i http://127.0.0.1:8080/openapi/` (replace your dev server url if required)
 
 ## contributing documentation
 The documentation is build from the markdown files in the [docs](https://github.com/MarcusWolschon/AdvancedRecipes/tree/develop/docs)

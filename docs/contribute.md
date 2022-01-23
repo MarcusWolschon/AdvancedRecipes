@@ -4,22 +4,25 @@ If you like this application and want it to improve, feel free to contribute to 
     If you help bring this project forward you deserve to be credited for it.
     Feel free to add yourself to `CONTRIBUTERS.md` or message me to add you if you have contributed anything.
 
-## Issues
+## contributing to issues
 The most basic but also very important way of contributing is reporting issues and commenting on ideas and feature requests
-over on the [GitHub issues](https://github.com/vabene1111/recipes/issues).
+over on the [GitHub issues](https://github.com/MarcusWolschon/AdvancedRecipes/issues).
 
 Without Feedback improvement can't happen, so don't hesitate to say what you want to say.
 
-## Contributing Code
+## contributing code
 Code contributions are always welcome. There is no special rules for what you need to do, 
 just do your best and we will work together to get your idea and code merged into the project.
 
 You may want to run "python manage.py collectstatic" and then "pytest" to make sure all unit tests are still working. 
 
+You may also first try to get your pull request approved in the upstrean Tandoor Recipes project then in this fork,
+before asking here. That makes it available for a lot more users.
+
 !!! info
     The dev setup is a little messy as this application combines the best (at least in my opinion) of django and Vue.js.
 
-### Django
+### setting up Django
 This application is developed using the Django framework for Python. They have excellent 
 [documentation](https://www.djangoproject.com/start/) on how to get started, so I will only give you the basics here.
 
@@ -39,7 +42,7 @@ populated from default values.
 To run all python unit tests, execute `pytest`.
 To run only a single text, you may use the -k argumgnet. e.g. `pytest -k test_recipe_import`
 
-### Vue.js
+### setting up Vue.js
 Some of the more complex pages use [Vue.js](https://vuejs.org/) to enhance the frontend. 
 
 In order to work on these pages you will have to install a Javascript package manager of your choice. The following examples use yarn. To [install yarn](https://classic.yarnpkg.com/lang/en/docs/install), you need [Node.js](https://nodejs.org/en/download/current/) first.
@@ -51,7 +54,7 @@ In order to work on these pages you will have to install a Javascript package ma
 
 Before committing please make sure to pack the source using `yarn build`.
 
-### Translations
+### compiling translations
 
 To compile modified -po translation files into machine readable .mo files,
 you need to have gettext installed.
@@ -60,7 +63,7 @@ For Windows, use the version on https://mlocati.github.io/articles/gettext-iconv
 Then run .\makemessages.cmd or open a shell in the directory "cookbook" and run:
 `django-admin makemessages -a`
 
-#### API Client
+### building the API Client
 The API Client is generated automatically from the openapi interface provided by the django rest framework.
 For this [openapi-generator](https://github.com/OpenAPITools/openapi-generator) is used.
 
@@ -70,8 +73,8 @@ Navigate to `vue/src/utils/openapi`.
 
 Generate the schema using `openapi-generator-cli generate -g typescript-axios -i http://127.0.0.1:8000/openapi/` (replace your dev server url if required)
 
-## Contribute Documentation
-The documentation is build from the markdown files in the [docs](https://github.com/vabene1111/recipes/tree/develop/docs)
+## contributing documentation
+The documentation is build from the markdown files in the [docs](https://github.com/MarcusWolschon/AdvancedRecipes/tree/develop/docs)
 folder of the GitHub repository. 
 
 !!! warning "Deployment Branch"
@@ -84,7 +87,7 @@ Now install mkdocs and dependencies: `pip install mkdocs-material mkdocs-include
 
 If you want to test the documentation locally run `mkdocs serve` from the project root.
 
-## Contribute Translations
+## contributing translations
 
 If you know any foreign languages that is not yet translated feel free to contribute translations.
 

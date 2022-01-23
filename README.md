@@ -30,6 +30,7 @@ You can also find my [![app icon](https://raw.githubusercontent.com/MarcusWolsch
 
 - [How to set up the software](docs/install/manual.md)
 - [How to set up a development environment](docs/contribute.md)
+- first step: After setting up your user, go to the "+" sign on the top, choose "import recipe" and drag the "bookmark this" into your bookmark bar/list. Then visit any recipe website, click it and allow popups to easily start populating your personal recipe collection.
 
 ## Core Features
 - 🥗 **Manage your recipes** - Manage your ever growing recipe collection

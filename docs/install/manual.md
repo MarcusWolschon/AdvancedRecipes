@@ -29,7 +29,7 @@ npm install --global yarn
 
 `sudo apt install libpq-dev postgresql`
 
-###Install project requirements
+### Install Python requirements
 
 !!! warning "Update"
     Dependencies change with most updates so the following steps need to be re-run with every update or else the application might stop working.
@@ -42,6 +42,8 @@ Using binaries from the virtual env:
 - you may find that you need to install some "-dev" packages or python features the first time.
 - if you have issues with "python-ldap" and missing header files or needing a C compiler first, you may want to replace "python-ldap==3.4.0" and "django-auth-ldap==4.0.0" with "django-python3-ldap" in requirements.txt
 
+### Install Javascript requirements
+
 You will also need to install front end requirements and build them. For this navigate to the `./vue`folder and run
 
 ```shell
@@ -49,7 +51,7 @@ yarn install
 yarn build
 ```
 
-## Setup postgresql
+## Setup PostgreSQL
 
 `sudo -u postgres psql`
 
@@ -93,6 +95,10 @@ Generate static files: `bin/python3.9 manage.py collectstatic` and `bin/python3.
 
 ## Setup web services
 
+### run gunicorn standalone
+
+/var/www/recipes/bin/gunicorn --error-logfile /tmp/gunicorn_err.log --log-level debug --capture-output --bind 0.0.0.0:8080
+
 ### gunicorn
 
 Create a service that will start gunicorn at boot: `sudo nano /etc/systemd/system/gunicorn_recipes.service`
@@ -112,7 +118,9 @@ User=recipes
 Group=www-data
 WorkingDirectory=/var/www/recipes
 EnvironmentFile=/var/www/recipes/.env
-ExecStart=/var/www/recipes/bin/gunicorn --error-logfile /tmp/gunicorn_err.log --log-level debug --capture-output --bind unix:/var/www/recipes/recipes.sock recipes.wsgi:application
+ExecStart=/var/www/recipes/bin/gunicorn --error-logfile /tmp/gunicorn_err.log --log-level debug --capture-output --bind unix:/var/www/recipes/recipes.sock
+# or ExecStart=/var/www/recipes/bin/gunicorn --error-logfile /tmp/gunicorn_err.log --log-level debug --capture-output --bind 0.0.0.0:8080
+recipes.wsgi:application
 
 [Install]
 WantedBy=multi-user.target
@@ -148,6 +156,7 @@ server {
     location / {
         proxy_set_header Host $http_host;
         proxy_pass http://unix:/var/www/recipes/recipes.sock;
+        # or proxy_pass http://127.0.0.1:8080
         proxy_set_header X-Forwarded-Proto $scheme;
     }
 }

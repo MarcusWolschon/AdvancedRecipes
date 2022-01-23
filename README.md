@@ -26,6 +26,11 @@ You can also find my [![app icon](https://raw.githubusercontent.com/MarcusWolsch
 <h4 align="center">The recipe manager that allows you to manage your ever growing collection of digital recipes.</h4>
 
 
+## Installation
+
+- [How to set up the software](docs/install/manual.md)
+- [How to set up a development environment](docs/contribute.md)
+
 ## Core Features
 - 🥗 **Manage your recipes** - Manage your ever growing recipe collection
 - 📆 **Plan** - multiple meals for each day

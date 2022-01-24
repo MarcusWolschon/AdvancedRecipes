@@ -17,7 +17,7 @@ It includes serveral features I've written that where not or not yet accepted as
 - WIP: [Handle common, problematic cases for ingredients](https://github.com/MarcusWolschon/AdvancedRecipes/issues/12)
 - Planned: [Integrating with FatSecret calorie counter](https://github.com/MarcusWolschon/AdvancedRecipes/issues/2)
 
-You can also find my [![app icon](https://raw.githubusercontent.com/MarcusWolschon/ShoppingForTandoor/main/app/ShoppingForTandoorDesktop/src/jvmMain/resources/favicon.ico) Android app for a shopping list](https://github.com/MarcusWolschon/ShoppingForTandoor).
+You can also find my [![app icon](https://raw.githubusercontent.com/MarcusWolschon/ShoppingForTandoor/main/app/ShoppingForTandoorDesktop/src/jvmMain/resources/favicon.ico) Android app for a shopping list](https://play.google.com/apps/testing/biz.wolschon.tandoorshopping.android) ([Source Code](https://github.com/MarcusWolschon/ShoppingForTandoor)).
 
 **Timeline:** A stable release of both is planned after the (February 2022?) Release of the upstream Tandoor Recipes with the "Shopping List V2" feature.
 

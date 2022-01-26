@@ -7,6 +7,7 @@ from recipe_scrapers._schemaorg import SchemaOrg
 from .cooksillustrated import CooksIllustrated
 
 # vvvvvvvvvvvvvvvvvvvvvv
+from recipe_scrapers._utils import normalize_string
 from gettext import gettext as _
 from recipes import settings
 from .cookidoo import Cookidoo
@@ -54,6 +55,37 @@ def text_scraper(text, url=None):
                 pass
 
         # vvvvvvvvvvvvvvvvvvvvvv
+        def normalize_ingredient(self, ingredient):
+            if ingredient is None:
+                return ""
+            if settings.DEBUG:
+                print("TextScraper: normalize_ingredient(" + ingredient + ")")
+
+            out = normalize_string(ingredient)
+
+            # "2 geh TL XYZ" => "2 geh.TL XYZ" => [amount=2, unit="geh.TL", food="XYZ"]
+            out = out.replace("geh. TL", "geh.TL")\
+                .replace("geh. EL", "geh.EL")\
+                .replace("ges. TL", "ges.TL") \
+                .replace("ges. EL", "ges.EL")
+
+            # "10.5 - 200 g XYZ" => "100 g XYZ (10.5 - 200)"
+            out = re.sub("(\d+|\d+[\\.,]\d+) - (\d+|\d+[\\.,]\d+) (.*)", "\\1 \\3 (\\1 - \\2)", out)
+
+            if settings.DEBUG:
+                print("TextScraper: normalize_ingredient(" + ingredient + ")=" + out)
+            return out
+
+        def ingredients(self):
+            if settings.DEBUG:
+                print("TextScraper: ingredients()")
+            ingredients = (
+                    self.schema.data.get("recipeIngredient") or self.data.get("ingredients") or []
+            )
+            return [
+                self.normalize_ingredient(ingredient) for ingredient in ingredients if ingredient
+            ]
+
         def normalize_instruction(self, instruction):
             if instruction is None:
                 return ""

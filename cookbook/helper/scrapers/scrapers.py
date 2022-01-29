@@ -65,9 +65,11 @@ def text_scraper(text, url=None):
 
             # "2 geh TL XYZ" => "2 geh.TL XYZ" => [amount=2, unit="geh.TL", food="XYZ"]
             out = out.replace("geh. TL", "geh.TL")\
-                .replace("geh. EL", "geh.EL")\
+                .replace("geh. EL", "geh.EL") \
                 .replace("ges. TL", "ges.TL") \
-                .replace("ges. EL", "ges.EL")
+                .replace("ges. EL", "ges.EL") \
+                .replace("gestr. TL", "ges.TL") \
+                .replace("gestr. EL", "ges.EL")
 
             # "10.5 - 200 g XYZ" => "100 g XYZ (10.5 - 200)"
             out = re.sub("(\d+|\d+[\\.,]\d+) - (\d+|\d+[\\.,]\d+) (.*)", "\\1 \\3 (\\1 - \\2)", out)

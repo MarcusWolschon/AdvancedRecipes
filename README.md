@@ -14,7 +14,8 @@ It includes serveral features I've written that where not or not yet accepted as
 - [Cookidoo importer with Thermomix handling](https://github.com/TandoorRecipes/recipes/pull/1389) (including highlight of Thermomix instructions from other recipe sources)
 - [Import recipe steps](https://github.com/TandoorRecipes/recipes/pull/1303) (from sites with machine readable and also unformated steps)
 - [Import recipe nutritional information](https://github.com/TandoorRecipes/recipes/pull/1294)
-- WIP: [Handle common, problematic cases for ingredients](https://github.com/MarcusWolschon/AdvancedRecipes/issues/12)
+  - [per serving or per recipe](https://github.com/MarcusWolschon/AdvancedRecipes/issues/18)
+- [Handle common, problematic cases for ingredients](https://github.com/MarcusWolschon/AdvancedRecipes/issues/12)
 - Planned: [Integrating with FatSecret calorie counter](https://github.com/MarcusWolschon/AdvancedRecipes/issues/2)
 
 You can also find my [![app icon](https://raw.githubusercontent.com/MarcusWolschon/ShoppingForTandoor/main/app/ShoppingForTandoorDesktop/src/jvmMain/resources/favicon.ico) Android app for a shopping list](https://play.google.com/apps/testing/biz.wolschon.tandoorshopping.android) ([Source Code](https://github.com/MarcusWolschon/ShoppingForTandoor)).

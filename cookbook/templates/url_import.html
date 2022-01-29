@@ -645,6 +645,7 @@
                               rows="8"></textarea>
                 </div>
 
+                <!-- vvvvvvvvvvvvvvvvvvvvvv -->
                 <div class="form-group">
                     {% trans 'Import Steps' %}<br/>
                     <input id="id_import_steps" type="checkbox"
@@ -652,6 +653,14 @@
                            v-model="import_as_steps"> <label
                         for="id_import_steps">{% trans 'Import markup headings as separate steps.' %}</label>
                 </div>
+                <div class="form-group">
+                    {% trans 'Import Nutritional values' %}<br/>
+                    <input id="nutrition_per_serving" type="checkbox"
+                           checked="checked"
+                           v-model="nutrition_per_serving"> <label
+                        for="nutrition_per_serving">{% trans 'Nutritional values are per serving.' %}</label>
+                </div>
+                <!-- ^^^^^^^^^^^^^^^^^^^^^^ -->
 
                 <div class="form-group">
                     <label for="id_keywords">{% trans 'Keywords' %}</label>
@@ -681,6 +690,7 @@
                 <div class="form-group">
                     {% trans 'All Keywords' %}<br/>
                     <input id="id_all_keywords" type="checkbox"
+                           checked="checked"
                            v-model="all_keywords"> <label
                         for="id_all_keywords">{% trans 'Import all keywords, not only the ones already existing.' %}</label>
                 </div>
@@ -762,7 +772,10 @@
                 preview: false,
                 preview_type: 'json',
                 all_keywords: false,
+                // vvvvvvvvvvvvvvvvvvvvvv
                 import_as_steps: true,
+                nutrition_per_serving: true,
+                // ^^^^^^^^^^^^^^^^^^^^^^
                 importing_recipe: false,
                 recipe_json: undefined,
                 recipe_tree: undefined,
@@ -886,7 +899,10 @@
                     }
                     this.importing_recipe = true
                     this.$set(this.recipe_data, 'all_keywords', this.all_keywords)
+                    // vvvvvvvvvvvvvvvvvvvvvv
                     this.$set(this.recipe_data, 'import_as_steps', this.import_as_steps)
+                    this.$set(this.recipe_data, 'nutrition_per_serving', this.nutrition_per_serving)
+                    // ^^^^^^^^^^^^^^^^^^^^^^
                     this.$http.post(`{% url 'data_import_url' %}`, this.recipe_data).then((response) => {
                         let uri = window.location.search.substring(1);
                         let params = new URLSearchParams(uri);

@@ -159,6 +159,25 @@ def import_url(request):
             if 'proteins' in data['nutrition']:
                 proteins = data['nutrition']['proteins']
 
+        if settings.DEBUG:
+            print("data.py calories=" + str(calories))
+            print("data.py carbohydrates=" + str(carbohydrates))
+            print("data.py fats=" + str(fats))
+            print("data.py proteins=" + str(proteins))
+
+        if data['nutrition_per_serving']:
+            servings = float(data['servings'])
+            calories = float(calories) * servings
+            carbohydrates = float(carbohydrates) * servings
+            fats = float(fats) * servings
+            proteins = float(proteins) * servings
+            if settings.DEBUG:
+                print("data.py servings=" + str(servings))
+                print("data.py total calories=" + str(calories))
+                print("data.py total carbohydrates=" + str(carbohydrates))
+                print("data.py total fats=" + str(fats))
+                print("data.py total proteins=" + str(proteins))
+
         nutrition = NutritionInformation.objects.create(
             calories=calories,
             carbohydrates=carbohydrates,

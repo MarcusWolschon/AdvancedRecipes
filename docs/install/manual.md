@@ -21,30 +21,34 @@ Create virtual env: `python3.9 -m venv /var/www/recipes`
 
 Install Javascript Tools
 ```shell
-apt install nodejs
-npm install --global yarn
+sudo apt install nodejs
+sudo npm install --global yarn
 ```
 
 ### Install postgresql requirements
 
-`sudo apt install libpq-dev postgresql`
+```shell
+sudo apt install libpq-dev postgresql
+```
 
 ### Install Python requirements
 
 !!! warning "Update"
     Dependencies change with most updates so the following steps need to be re-run with every update or else the application might stop working.
-    See section **Updating** below
+    See section [Updating](#updating) below.
 
 Using binaries from the virtual env:
 
-`/var/www/recipes/bin/pip3.9 install -r requirements.txt`
+```shell
+/var/www/recipes/bin/pip3.9 install -r requirements.txt
+```
 
 - you may find that you need to install some "-dev" packages or python features the first time.
 - if you have issues with "python-ldap" and missing header files or needing a C compiler first, you may want to replace "python-ldap==3.4.0" and "django-auth-ldap==4.0.0" with "django-python3-ldap" in requirements.txt
 
 ### Install Javascript requirements
 
-You will also need to install front end requirements and build them. For this navigate to the `./vue`folder and run
+You will also need to install front end requirements and build them. For this navigate to the `./vue` folder and run
 
 ```shell
 yarn install
@@ -53,7 +57,9 @@ yarn build
 
 ## Setup PostgreSQL
 
-`sudo -u postgres psql`
+```shell
+sudo -u postgres psql
+```
 
 In the psql console:
 
@@ -78,6 +84,7 @@ wget https://raw.githubusercontent.com/vabene1111/recipes/develop/.env.template 
 ```
 
 Things to edit:
+
 - `SECRET_KEY`: use something secure.
 - `POSTGRES_HOST`: probably 127.0.0.1.
 - `POSTGRES_PASSWORD`: the password we set earlier when setting up djangodb.

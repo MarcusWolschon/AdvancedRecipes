@@ -30,6 +30,7 @@ You can also find my [![app icon](https://raw.githubusercontent.com/MarcusWolsch
 ## Installation
 
 - [How to set up the software](docs/install/manual.md)
+- [Docker Image](https://hub.docker.com/r/etofi/advancedrecipes) provided by Eric Trösch
 - [How to set up a development environment](docs/contribute.md)
 - first step: After setting up your user, go to the "+" sign on the top, choose "import recipe" and drag the "bookmark this" into your bookmark bar/list. Then visit any recipe website, choose a recipe you like, click the bookmark and allow popups to easily start populating your personal recipe collection.
 
